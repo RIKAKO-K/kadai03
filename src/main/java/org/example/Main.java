@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
-    public enum eEntryKbn {
+    public enum EEntryKbn {
         //列挙子の定義
         INSERT,
         UPDATE,
         DELETE
     }
     public static void main(String[] args) {
-        eEntryKbn EntryKbn;             //登録区分
+        EEntryKbn entryKbn;             //登録区分
 
         try{
             // サッカー日本代表選手の背番号、選手名をセット
@@ -53,17 +53,17 @@ public class Main {
                 case "1":
                     //追加
                     System.out.println("------選手追加("+ LocalDate.now() + ")------");
-                    EntryKbn = eEntryKbn.INSERT;
+                    entryKbn = EEntryKbn.INSERT;
                     break;
                 case "2":
                     //変更
                     System.out.println("------選手変更("+ LocalDate.now() + ")------");
-                    EntryKbn = eEntryKbn.UPDATE;
+                    entryKbn = EEntryKbn.UPDATE;
                     break;
                 case "3":
                     //削除
                     System.out.println("------選手削除("+ LocalDate.now() + ")------");
-                    EntryKbn = eEntryKbn.DELETE;
+                    entryKbn = EEntryKbn.DELETE;
                     break;
                 default:
                     //例外発生処理へ
@@ -77,14 +77,14 @@ public class Main {
             //処理前チェック
             if(samuraiBlue.containsKey(number)){
                 //重複あり
-                if(EntryKbn == eEntryKbn.INSERT) {
+                if(entryKbn == EEntryKbn.INSERT) {
                     //新規（重複あり：処理終了)
                     System.err.println("その背番号は既に使用されています。別の番号を入力してください。");
                     System.exit(0);
                 }
             }else{
                 //重複なし
-                if(EntryKbn == eEntryKbn.UPDATE || EntryKbn == eEntryKbn.DELETE) {
+                if(entryKbn == EEntryKbn.UPDATE || entryKbn == EEntryKbn.DELETE) {
                     //変更・削除（重複なし：処理終了）
                     System.err.println(("該当選手が見つかりません。正しい背番号を入力してください。"));
                     System.exit(0);
@@ -92,7 +92,7 @@ public class Main {
             }
 
             //処理実行
-            if(EntryKbn == eEntryKbn.DELETE){
+            if(entryKbn == EEntryKbn.DELETE){
                 //削除（remove)
                 samuraiBlue.remove(number);
             }else{
